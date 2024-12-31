@@ -10,7 +10,6 @@ from printy import printy
 def clear_terminal(): #clear the terminal for better UI
     os.system('cls' if os.name == 'nt' else 'clear')
 
-
 def menu(options: list): #menu interface
     def fancy_menu(options, current_selection: int): #graphical text for a better view
         clear_terminal()
