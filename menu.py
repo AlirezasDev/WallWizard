@@ -1,18 +1,27 @@
 import keyboard
 from printy import printy
 import time
+import os
 
 def menu(options: list):
 
+    def clear_terminal():
+        os.system('cls' if os.name == 'nt' else 'clear')
+
     def fancy_menu(options, current_selection: int):
-        print("-use the 'arrow keys' to navigate.",
-              "-use the 'space bar' to confirm your selection.",
-              "-use the 'q button' to quit the application.", sep="\n")
+        clear_terminal()
+        printy("-use the 'arrow keys' to navigate.", "g")
+        printy("-use the 'space bar' to confirm your selection.", "g")
+        printy("-use the 'q button' to quit the application.", "g")
+        print("\n")
+
         for line in range(len(options)):
             if line == current_selection:
-                printy("➡ "+options[line], "mBI")
+                printy("🔴   "+f"[mBI]{options[line]}@")
+                print("\n")
             else:
-                printy(options[line], "B")
+                printy("    "+options[line], "B")
+                print("\n")
         print("\n")
 
     j = 0
