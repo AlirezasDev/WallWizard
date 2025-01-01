@@ -6,24 +6,31 @@ import hashlib
 import keyboard
 from printy import printy
 
+def load_accounts():  # loading json file content which has users data
+    with open('account.json', 'r') as data:
+        return json.load(data)
+
+def save_accounts(accounts): #save the changes made to users data on the jason file
+    with open('account.json', 'w') as data:
+        json.dump(accounts, data, indent=4)
 
 def clear_terminal(): #clear the terminal for better UI
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def menu(options: list): #menu interface
-    def fancy_menu(options, current_selection: int): #graphical text for a better view
+    def fancy_menu(options1, current_selection: int): #graphical text for a better view
         clear_terminal()
         printy("-use the 'arrow keys' to navigate.", "g")
         printy("-use the 'space bar' to confirm your selection.", "g")
         printy("-use the 'q button' to quit the application.", "g")
         print("\n")
 
-        for line in range(len(options)):
+        for line in range(len(options1)):
             if line == current_selection:
-                printy("\t->" + f"[mBHI]{options[line]}@")
+                printy("\t->" + f"[mBHI]{options1[line]}@")
                 print("\n")
             else:
-                printy("\t" + options[line], "B")
+                printy("\t" + options1[line], "B")
                 print("\n")
         print("\n")
 
@@ -65,17 +72,9 @@ def signup_or_login(entry):
     def hash_password(password): #hash the password
         return hashlib.sha256(password.encode()).hexdigest()
 
-    def load_accounts(): #loading json file content which has users data
-        with open('account.json', 'r') as data:
-            return json.load(data)
-
-    def save_accounts(accounts): #save the changes made to users data on the jason file
-        with open('account.json', 'w') as data:
-            json.dump(accounts, data, indent=4)
-
     def retry_on_failure():
         for count in range(3, -1, -1):
-            print("Retry in ", count)
+            print("\rRetry in ", count, end="")
             time.sleep(1)
 
     def signup(accounts): #enter email,username and password to signup
@@ -115,13 +114,12 @@ def signup_or_login(entry):
                 retry_on_failure()
 
         accounts.append({"username": username, "email": email, "password": hashed_password,
-                         "points": 0, "play_time": 0, "user_ID": len(accounts)}) #adding the new user info to our list
+                         "points": 0, "wins": 0, "losses": 0,
+                         "play_time": [0,0,0], "user_ID": len(accounts)}) #adding the new user info to our list
         save_accounts(accounts) #writing changes on json
 
-        for count in range(3,-1, -1):
-            clear_terminal()
-            print("Signup successful!")
-            print("Entering in ", count)
+        for count in range(3, -1, -1):
+            print("\rSignup successful! Entering in ", count, end="")
             time.sleep(1)
         return
 
@@ -150,10 +148,8 @@ def signup_or_login(entry):
                 print("Incorrect password. Please try again.")
                 retry_on_failure()
 
-        for count in range(3,-1, -1):
-            clear_terminal()
-            print("login successful!")
-            print("Entering in ", count)
+        for count in range(3, -1, -1):
+            print("\rLogin successful! Entering in ", count, end="")
             time.sleep(1)
         return
 
