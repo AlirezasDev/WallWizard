@@ -20,10 +20,10 @@ def menu(options: list): #menu interface
 
         for line in range(len(options)):
             if line == current_selection:
-                printy("🔴   " + f"[mBI]{options[line]}@")
+                printy("\t->" + f"[mBHI]{options[line]}@")
                 print("\n")
             else:
-                printy("    " + options[line], "B")
+                printy("\t" + options[line], "B")
                 print("\n")
         print("\n")
 
@@ -100,7 +100,7 @@ def signup_or_login(entry):
             elif check_username(username):
                 break
             else:
-                print("Username must be at least 4 characters long, which can include letters, numbers and underline.")
+                print("Username must be at least 4 characters long (and less than 20), which can include letters, numbers and underline.")
                 retry_on_failure()
 
         while True:
@@ -115,7 +115,7 @@ def signup_or_login(entry):
                 retry_on_failure()
 
         accounts.append({"username": username, "email": email, "password": hashed_password,
-                         "points": 0, "user_ID": len(accounts)}) #adding the new user info to our list
+                         "points": 0, "play_time": 0, "user_ID": len(accounts)}) #adding the new user info to our list
         save_accounts(accounts) #writing changes on json
 
         for count in range(3,-1, -1):
