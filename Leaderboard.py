@@ -26,7 +26,7 @@ def leaderboard():
                                              sorted_users[1]['wins'], sorted_users[1]['losses'],
                                                          f"{sorted_users[1]['play_time'][0]}h"
                                                          f"{sorted_users[1]['play_time'][1]}m"
-                                                         f"{sorted_users[1]['play_time'][2]}s"), "BHy")
+                                                         f"{sorted_users[1]['play_time'][2]}s"), "BHc")
     except:
         pass
     try:
@@ -34,7 +34,7 @@ def leaderboard():
                                              sorted_users[2]['wins'], sorted_users[2]['losses'],
                                                          f"{sorted_users[2]['play_time'][0]}h"
                                                          f"{sorted_users[2]['play_time'][1]}m"
-                                                         f"{sorted_users[2]['play_time'][2]}s"), "BHy")
+                                                         f"{sorted_users[2]['play_time'][2]}s"), "BHm")
     except:
         pass
 
