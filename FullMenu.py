@@ -6,6 +6,15 @@ import hashlib
 import keyboard
 from printy import printy
 
+player1_id = ""
+player2_id = ""
+player1_username = ""
+player2_username = ""
+
+def start_game():
+    print("p1:" ,player1_username)
+    print("p2:" ,player2_username)
+
 def load_accounts():  # loading json file content which has users data
     with open('account.json', 'r') as data:
         return json.load(data)
@@ -18,13 +27,19 @@ def clear_terminal(): #clear the terminal for better UI
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def menu(options: list): #menu interface
+    global player1_username, player2_username
+    time.sleep(0.2)
     clear_terminal()
     def fancy_menu(options1, current_selection: int): #graphical text for a better view
         clear_terminal()
         printy("-use the 'arrow keys' to navigate.", "g")
         printy("-use the 'space bar' to confirm your selection.", "g")
         print("\n")
-
+        if len(player1_username) != 0:
+            printy(f"player1 = {player1_username}", "gB")
+        if len(player2_username) != 0:
+            printy(f"player1 = {player2_username}", "gB")
+        print("\n")
         for line in range(len(options1)):
             if line == current_selection:
                 printy("\t->" + f"[mBHI]{options1[line]}@")
@@ -72,13 +87,17 @@ def menu(options: list): #menu interface
     elif options[j] == "Leaderboard":
         return leaderboard()
     elif options[j] == "Main Menu":
+        player1_id = ""
+        player1_username = ""
+        player2_id = ""
+        player2_username = ""
         return menu(["Login", "Signup", "Leaderboard", "Quit"])
-    # elif options[j] == "New Game":
+    elif options[j] == "New Game":
+        return menu(["Login", "Signup", "Quit"])
     # elif options[j] == "Continue":
 
 def signup_or_login(entry):
     time.sleep(0.1)
-
     def check_mail(mail): #check the email format
         valid_email_pattern = r"^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
         return bool(re.match(valid_email_pattern, mail))
@@ -100,6 +119,7 @@ def signup_or_login(entry):
             time.sleep(1)
 
     def signup(accounts): #enter email,username and password to signup
+        global player1_username, player2_username, player1_id, player2_id
         while True:
             clear_terminal()
             email = input("Enter your email: ").strip()
@@ -143,9 +163,17 @@ def signup_or_login(entry):
         for count in range(3, -1, -1):
             print("\rSignup successful! Entering in ", count, end="")
             time.sleep(1)
-        return menu(["New Game", "Continue", "Main Menu", "Quit"])
+        if len(player1_username) == 0:
+            player1_id = len(accounts)
+            player1_username = username
+            return menu(["New Game", "Continue", "Main Menu", "Quit"])
+        elif len(player2_username) == 0:
+            player2_id = len(accounts)
+            player2_username = username
+            return start_game()
 
     def login(accounts): #enter an existing email or username to login
+        global player1_username, player2_username, player1_id, player2_id
         members = {member["username"]: member for member in accounts}
         members.update({member["email"]: member for member in accounts})
         while True:
@@ -157,7 +185,6 @@ def signup_or_login(entry):
             else:
                 print("Email or username not found!")
                 retry_on_failure()
-
         while True:
             clear_terminal()
             password = input("Enter your password: ")
@@ -173,7 +200,14 @@ def signup_or_login(entry):
         for count in range(3, -1, -1):
             print("\rLogin successful! Entering in ", count, end="")
             time.sleep(1)
-        return menu(["New Game", "Continue", "Main Menu", "Quit"])
+        if len(player1_username) == 0:
+            player1_id = member['user_ID']
+            player1_username = member['username']
+            return menu(["New Game", "Continue", "Main Menu", "Quit"])
+        elif len(player2_username) == 0:
+            player2_id = member['user_ID']
+            player2_username = member['username']
+            return start_game()
 
     accounts = load_accounts() #load json file data
     if entry == "signup":
