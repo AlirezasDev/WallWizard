@@ -3,6 +3,8 @@ import re
 import time
 import json
 import hashlib
+from enum import member
+
 import keyboard
 from printy import printy
 
@@ -200,12 +202,26 @@ def signup_or_login(entry):
         while True:
             clear_terminal()
             email_or_username = input("Enter your email or username: ").strip()
-            if email_or_username in members:
+            if len(player1_username) > 0:
+                if email_or_username == player1_username or email_or_username == members[player1_username]["email"]:
+                    print("This player has already logged in.")
+                    retry_on_failure()
+                    continue
+                else:
+                    if email_or_username in members:
+                        member = members[email_or_username]
+                        break
+                    else:
+                        print("Email or username not found!")
+                        retry_on_failure()
+                        continue
+            elif email_or_username in members:
                 member = members[email_or_username]
                 break
             else:
                 print("Email or username not found!")
                 retry_on_failure()
+                continue
         while True:
             clear_terminal()
             password = input("Enter your password: ")
