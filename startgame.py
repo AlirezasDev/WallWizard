@@ -1,25 +1,35 @@
+import time
 import FullMenu
-from game import Game
+import game
+from assign_points import assign_points
 
-player1_username = ""
-player2_username = ""
+player1 = FullMenu.player1_username
+player2 = FullMenu.player2_username
 
 def start_game():
-    global player1_username, player2_username
+    global player1, player2
+    import game
 
-    if not player1_username or not player2_username:
-        print("Both players must be logged in before starting the game.")
-        return
-
-    game = Game(1, player1_username, player2_username)
+    game = game.Game(1, player1, player2)
 
     exit_code = ""
-    while exit_code not in ["T", "Q"]:
+    while True:
+        if exit_code in ["T", "Q"]:
+            break
         exit_code = game.play()
+    # while exit_code not in ["T", "Q"]:
+    #     exit_code = game.play()
+    return
 
-# Example Usage
-if __name__ == "__main__":
-    player1_username = "player1"
-    player2_username = "player2"
+start_time = time.time()
 
-    start_game()
+start_game()
+
+end_time = time.time()
+elapsed_time = end_time - start_time
+
+if game.winner == player1:
+    assign_points(player1, player2, elapsed_time)
+else:
+    assign_points(player2, player1, elapsed_time)
+exit()

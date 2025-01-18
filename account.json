@@ -3,13 +3,13 @@
         "username": "Ehsan",
         "email": "ehsan@gmail.com",
         "password": "950ed7afd770aa5857410dde40f62b8d27edd32d9ea73b50595a7c8bc25220a2",
-        "points": 35,
-        "wins": 8,
-        "losses": 0,
+        "points": 20,
+        "wins": 10,
+        "losses": 5,
         "play_time": [
             0,
-            32,
-            80
+            0,
+            46
         ],
         "user_ID": 0
     },
@@ -17,14 +17,28 @@
         "username": "Ehsan2",
         "email": "ehsan2@gmail.com",
         "password": "950ed7afd770aa5857410dde40f62b8d27edd32d9ea73b50595a7c8bc25220a2",
-        "points": -35,
-        "wins": 0,
+        "points": -25,
+        "wins": 2,
         "losses": 7,
         "play_time": [
             0,
-            32,
-            80
+            0,
+            0
         ],
         "user_ID": 1
+    },
+    {
+        "username": "Imamir_84",
+        "email": "amir@gmail.com",
+        "password": "72d040729794ceccdfb5d835658dd4ab80cb2471a2c148d28d8ee738b407ef14",
+        "points": 5,
+        "wins": 3,
+        "losses": 2,
+        "play_time": [
+            0,
+            0,
+            46
+        ],
+        "user_ID": 2
     }
 ]
