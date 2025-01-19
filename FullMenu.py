@@ -24,9 +24,16 @@ def save_accounts(accounts): #save the changes made to users data on the jason f
 def clear_terminal(): #clear the terminal for better UI
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def main_menu():
+    global player1_username, player2_username, player1_id, player2_id
+    player1_username = ""
+    player2_username = ""
+    player1_id = ""
+    player2_id = ""
+    menu(["Login", "Signup", "Leaderboard", "Quit"])
 
 def menu(options: list): #menu interface
-    global player1_username, player2_username
+    global player1_username, player2_username, player1_id, player2_id
     time.sleep(0.2)
     clear_terminal()
     def fancy_menu(options1, current_selection: int): #graphical text for a better view
@@ -82,18 +89,14 @@ def menu(options: list): #menu interface
                 time.sleep(1)
                 exit()
             elif yorn.strip().strip() == "n":
-                menu(options)
+                break
+        menu(options)
     elif options[j] == "Leaderboard":
         return leaderboard()
     elif options[j] == "Main Menu":
-        player1_id = ""
-        player1_username = ""
-        player2_id = ""
-        player2_username = ""
-        return menu(["Login", "Signup", "Leaderboard", "Quit"])
+        main_menu()
     elif options[j] == "New Game":
         return menu(["Login", "Signup", "Quit"])
-    # elif options[j] == "Continue":
 
 def signup_or_login(entry):
     time.sleep(0.1)
@@ -278,8 +281,8 @@ def leaderboard():
             exit()
 
         if keyboard.is_pressed('m'):
-            menu(["Login", "Signup", "Leaderboard", "Quit"])
+            main_menu()
 
 
 
-menu(["Login", "Signup", "Leaderboard", "Quit"])
+main_menu()

@@ -733,4 +733,5 @@ if winner == player1:
 else:
     assign_points(player2, player1, elapsed_time)
 
-exit()
+FullMenu.main_menu()
+
