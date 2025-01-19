@@ -12,17 +12,17 @@ player1_id = ""
 player2_id = ""
 player1_username = ""
 player2_username = ""
-start_time = 0
+# start_time = 0
 
-def start_game():
-    global start_time
-    print("p1:" ,player1_username)
-    print("p2:" ,player2_username)
-    start_time = time.time()
+# def start_game():
+#     global start_time
+#     print("p1:" ,player1_username)
+#     print("p2:" ,player2_username)
+#     start_time = time.time()
 
-def end_game(winner, loser):
-    end_time = time.time()
-    playtime(end_time-start_time, winner, loser)
+# def end_game(winner, loser):
+#     end_time = time.time()
+#     playtime(end_time-start_time, winner, loser)
 
 def load_accounts():  # loading json file content which has users data
     with open('account.json', 'r') as data:
@@ -193,7 +193,8 @@ def signup_or_login(entry):
         elif len(player2_username) == 0:
             player2_id = len(accounts)
             player2_username = username
-            return start_game()
+            return
+            # return start_game()
 
     def login(accounts): #enter an existing email or username to login
         global player1_username, player2_username, player1_id, player2_id
@@ -244,7 +245,8 @@ def signup_or_login(entry):
         elif len(player2_username) == 0:
             player2_id = member['user_ID']
             player2_username = member['username']
-            return start_game()
+            return
+            # return start_game()
 
     accounts = load_accounts() #load json file data
     if entry == "signup":
