@@ -1,7 +1,11 @@
 import os
 from rich import print
 from time import sleep
+from time import time
 import copy
+import FullMenu
+
+winner = ""
 
 
 class Wall:
@@ -117,7 +121,7 @@ class Game:
 
     def clear_terminal(self, time):
         sleep(time)
-        os.system('clear')
+        os.system('cls' if os.name == 'nt' else 'clear')
 
     def valid_moves(self, player, x, y):
         self.clear_terminal(1)
@@ -138,6 +142,8 @@ class Game:
 
     def is_terminated(self, player):
         if player.pos_x == player.target_row:
+            global winner 
+            winner = player.name
             print(f"[bold green]{player.name} won the game ![/bold green]")
             return True
         else:
@@ -707,9 +713,12 @@ class Game:
             return self.play()
 
 
-game = Game(1, "player_1", "player_2")
+start_time = time()
+
+game = Game(1, FullMenu.player1_username, FullMenu.player2_username)
 exit_code = ""
 while exit_code not in ["T", "Q"]:
     exit_code = game.play()
 
-
+end_time = time()
+elapsed_time = end_time - start_time

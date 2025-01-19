@@ -40,5 +40,61 @@
             46
         ],
         "user_ID": 2
+    },
+    {
+        "username": "sinagod",
+        "email": "sina85@gmail.com",
+        "password": "9622b0159cb6202d8cbbc055b1f929bd25e1f97da73e05d5423057bc72c9064c",
+        "points": 0,
+        "wins": 0,
+        "losses": 0,
+        "play_time": [
+            0,
+            0,
+            0
+        ],
+        "user_ID": 3
+    },
+    {
+        "username": "sinagod2",
+        "email": "sina852@gmail.com",
+        "password": "9622b0159cb6202d8cbbc055b1f929bd25e1f97da73e05d5423057bc72c9064c",
+        "points": 0,
+        "wins": 0,
+        "losses": 0,
+        "play_time": [
+            0,
+            0,
+            0
+        ],
+        "user_ID": 4
+    },
+    {
+        "username": "alireza",
+        "email": "alireza@gmail.com",
+        "password": "f5801b9cf7d77f2d2a4e17a2f9c64de4da1ab958dc535ea87bc1bc3914accbff",
+        "points": -10,
+        "wins": 0,
+        "losses": 2,
+        "play_time": [
+            0,
+            2,
+            54
+        ],
+        "user_ID": 5
+    },
+    {
+        "username": "alireza2",
+        "email": "Alireza2@gmail.com",
+        "password": "f5801b9cf7d77f2d2a4e17a2f9c64de4da1ab958dc535ea87bc1bc3914accbff",
+        "points": 10,
+        "wins": 2,
+        "losses": 0,
+        "play_time": [
+            0,
+            2,
+            54
+        ],
+        "user_ID": 6
     }
 ]

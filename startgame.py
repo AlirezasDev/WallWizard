@@ -21,15 +21,11 @@ def start_game():
     #     exit_code = game.play()
     return
 
-start_time = time.time()
-
 start_game()
 
-end_time = time.time()
-elapsed_time = end_time - start_time
 
 if game.winner == player1:
-    assign_points(player1, player2, elapsed_time)
+    assign_points(player1, player2, game.elapsed_time)
 else:
-    assign_points(player2, player1, elapsed_time)
+    assign_points(player2, player1, game.elapsed_time)
 exit()
