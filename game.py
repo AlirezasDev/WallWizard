@@ -19,7 +19,7 @@ class Wall:
 
     def wall_activation(self):
         self.is_blocking = True
-        self.color = "bold bright_yellow"
+        self.color = "bold bright_red"
 
 
 class Center:
@@ -31,7 +31,7 @@ class Center:
 
     def center_activation(self, direction):
         self.is_activated = True
-        self.color = "bold bright_yellow"
+        self.color = "bold bright_red"
         self.direction = direction
 
 
@@ -111,8 +111,8 @@ class Game:
         self.id = game_id
         self.table = Table()
         self.is_finished = False
-        self.first_player = Player(user_1, 16, 8, 0, "bold magenta")
-        self.second_player = Player(user_2, 0, 8, 16, "bold bright_cyan")
+        self.first_player = Player(user_1, 16, 8, 0, "bold green")
+        self.second_player = Player(user_2, 0, 8, 16, "bold blue")
         self.turn = 0
         self.time = 0
         self.moves = {'U': (-2, 0), 'R': (0, 2), 'D': (2, 0), 'L': (0, -2), 'UU': (-4, 0), 'RR': (0, 4),
@@ -459,8 +459,8 @@ class Game:
                                 opposite_direction * 2)
 
     def complete_primary_table(self):
-        self.table.table[0][8].moving_ball_to(self.first_player.color)
-        self.table.table[16][8].moving_ball_to(self.second_player.color)
+        self.table.table[16][8].moving_ball_to(self.first_player.color)
+        self.table.table[0][8].moving_ball_to(self.second_player.color)
         for direction in ['U', 'R', 'D', 'L']:
             self.update_neighbors_ball_addition(0, 8, direction)
             self.update_neighbors_ball_addition(16, 8, direction)
@@ -480,7 +480,7 @@ class Game:
 
             for move in self.table.table[wall_x + first_up_neighbor[0]][wall_y].neighbors.keys():
                 if 'D' in move:
-                    self.table.table[wall_x + first_up_neighbor[0]][wall_y].add_limit(move)
+                    self.table.table[wall_x + first_up_neighbor[0]][wall_y].add_limit(move) 
 
             for move in self.table.table[wall_x + first_down_neighbor[0]][wall_y].neighbors.keys():
                 if 'U' in move:
@@ -655,6 +655,8 @@ class Game:
             print("[bold green]M : move\tQ : quit[/bold green]")
 
         print(f"[bold blue]number of your remaining walls : {player.num_wall}[/bold blue]")
+        print()
+        self.table.print_table()
         request = input()
 
         if request == "M":

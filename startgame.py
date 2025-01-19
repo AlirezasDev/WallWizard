@@ -28,4 +28,4 @@ if game.winner == player1:
     assign_points(player1, player2, game.elapsed_time)
 else:
     assign_points(player2, player1, game.elapsed_time)
-exit()
+exit() 

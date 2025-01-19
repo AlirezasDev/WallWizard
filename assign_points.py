@@ -17,17 +17,28 @@ def assign_points(winner, loser, spent_time):
         elif user['username'] == loser:
             user['points'] -= 5
             user['losses'] += 1
-
-    hours, remain = divmod(int(spent_time), 3600)
-    minutes, seconds = divmod(remain, 60)
-    elapsed_time = [hours, minutes, seconds]
+    
     for user in users:
         if user['username'] == winner:
-            new_playtime = [user['play_time'][i] + elapsed_time[i] for i in range(3)]
+            time = int(spent_time)
+            time += user['play_time'][0]*3600
+            time += user['play_time'][1]*60
+            time += user['play_time'][2]
+            hours, remain = divmod(int(time), 3600)
+            minutes, seconds = divmod(remain, 60)
+            elapsed_time = [hours, minutes, seconds]
+            new_playtime = [elapsed_time[i] for i in range(3)]
             user['play_time'] = new_playtime
         elif user['username'] == loser:
-            new_playtime = [user['play_time'][i] + elapsed_time[i] for i in range(3)]
+            time = int(spent_time)
+            time += user['play_time'][0]*3600
+            time += user['play_time'][1]*60
+            time += user['play_time'][2]
+            hours, remain = divmod(int(time), 3600)
+            minutes, seconds = divmod(remain, 60)
+            elapsed_time = [hours, minutes, seconds]
+            new_playtime = [elapsed_time[i] for i in range(3)]
             user['play_time'] = new_playtime
-
+            
     return save_accounts(users)
 
