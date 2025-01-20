@@ -733,5 +733,10 @@ if winner == player1:
 else:
     assign_points(player2, player1, elapsed_time)
 
-FullMenu.main_menu()
 
+for i in range(4):
+    FullMenu.clear_terminal()
+    print("\rExiting the game" + "." * i + " " * (3 - i), end="")
+    sleep(0.45)
+
+exit()
